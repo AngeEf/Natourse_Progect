@@ -1,10 +1,5 @@
-/*
-COLORS:
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-*/
 :root {
+   /*Color*/
   --light: #7ed56f;
   --light-rgba: rgba(126, 213, 111, 0.8);
   --medium: #55c57a;
@@ -12,6 +7,14 @@ Dark green: #28b485
   --dark-rgba: rgba(40, 180, 131, 0.8);
   --white: #ffffff;
   --grey: #777777;
+  --grey-light: #f7f7f7;
+  --black-rgba: rgba(0, 0, 0, 0.2);
+  /*Text*/
+  --default-text: 1.6rem;
+  /*Grid*/
+  --grid-width: 114rem;
+  --gutter-vertical: 8rem;
+  --gutter-horizontel: 6rem; 
 }
 *,
 *::after,
@@ -32,12 +35,47 @@ body {
   padding: 3rem;
   box-sizing: border-box;
 }
+/***** Utilities *****/
+.u-center-text {
+  text-align: center;
+}
+.u-margin-bottom-big {
+  margin-bottom: 8rem;
+}
+.u-margin-bottom-medium {
+  margin-bottom: 4rem;
+}
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem;
+}
+/***** Grid *****/
+.row {
+  max-width: var(--grid-width);
+  margin: 0 auto;
+}
+.row:not(:last-child) {
+  margin-bottom: var(--gutter-vertical);
+}
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.col-1-of-2 {
+  width: calc((100% - 6rem)/2);
+  float: left;
+}
+.col-1-of-2:not(:last-child) {
+  margin-right: var(--gutter-horizontel);
+}
+
+/***** Header Section *****/
 .header {
   height: 95vh;
   background-image: linear-gradient(
       to right bottom,
-      rgba(126, 213, 111, 0.8),
-      rgba(40, 180, 131, 0.8)
+      var(--light-rgba),
+      var(--dark-rgba)
     ),
     url(../img/hero.jpg);
   background-size: cover;
@@ -87,7 +125,7 @@ body {
   font-weight: 700;
   animation: moveInRight 1s ease-in;
 }
-
+/*****Animated H1 *****/
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -101,6 +139,7 @@ body {
     transform: translate(0);
   }
 }
+
 @keyframes moveInRight {
   0% {
     opacity: 0;
@@ -114,6 +153,7 @@ body {
     transform: translate(0);
   }
 }
+/***** Animated Button *****/
 @keyframes moveInBottom {
   0% {
     opacity: 0;
@@ -133,19 +173,30 @@ body {
   border-radius: 10rem;
   transition: all 0.2s;
   position: relative;
-  font-size: 1.6rem;
+  font-size: var(--default-text);
 }
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1rem 2rem var(--black-rgba);
+}
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
 }
 .btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5rem 1rem var(--black-rgba);
 }
 .btn--white {
   background-color: var(--white);
   color: var(--grey);
+}
+.btn--white::after {
+  background-color: var(--white);
+}
+.btn--animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
 }
 .btn::after {
   content: "";
@@ -159,14 +210,54 @@ body {
   z-index: -1;
   transition: all 0.4s;
 }
-.btn--white::after {
-  background-color: var(--white);
+/***** Section About *****/
+.section-about {
+  background-color: var(--grey-light);
+  padding:   17rem 0 40rem;
+  margin-top: -20vh;
 }
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, var(--light),var(--dark));
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: .2rem;
+  transition: all .2s;
 }
-.btn--animated {
-  animation: moveInBottom 0.5s ease-out 0.75s;
-  animation-fill-mode: backwards;
+.heading-secondary:hover {
+  transform: skewY(2deg) skewX(15deg) scale(1.1);
+  text-shadow: .5rem 1rem 2rem var(--black-rgba);
+}
+.heading-tertiary {
+  font-size: var(--default-text);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.paragraph {
+  font-size: var(--default-text);
+}
+.paragraph:not(:last-child) {
+  margin-bottom: 3rem;
+}
+.btn-text:link, :visited {
+  color: var(--light);
+  font-size: var(--default-text);
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid var(--light);
+  padding: 3px;
+  transition: all .2s;
+}
+.btn-text:hover {
+background-color: var(--light);
+color: var(--white);
+box-shadow: 0 .5rem 2rem var(--black-rgba);
+transform: translateY(-2px);
+}
+.btn-text:active {
+box-shadow: 0 .5rem 1rem var(--black-rgba);
+transform: translateY(0);
 }
