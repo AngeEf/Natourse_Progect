@@ -68,15 +68,20 @@ body {
 .col-1-of-2:not(:last-child) {
   margin-right: var(--gutter-horizontel);
 }
-
+.col-1-of-4 {
+  width: calc((100% - 3 * var(--gutter-horizontel))/4);
+  float: left;
+}
+.col-1-of-4:not(:last-child) {
+  margin-right: var(--gutter-horizontel);
+}
 /***** Header Section *****/
 .header {
   height: 95vh;
   background-image: linear-gradient(
       to right bottom,
       var(--light-rgba),
-      var(--dark-rgba)
-    ),
+      var(--dark-rgba)),
     url(../img/hero.jpg);
   background-size: cover;
   background-position: top;
@@ -210,10 +215,12 @@ body {
   z-index: -1;
   transition: all 0.4s;
 }
+
 /***** Section About *****/
+
 .section-about {
   background-color: var(--grey-light);
-  padding:   17rem 0 40rem;
+  padding:   20rem 0 53rem;
   margin-top: -20vh;
 }
 .heading-secondary {
@@ -260,4 +267,77 @@ transform: translateY(-2px);
 .btn-text:active {
 box-shadow: 0 .5rem 1rem var(--black-rgba);
 transform: translateY(0);
+}
+
+/***** Animation Image *****/
+
+.composition {
+  position: relative;
+  
+}
+.composition__photo {
+  width: 55%;
+  box-shadow: 0 1.5rem 4rem var(--black-rgba);
+  position: absolute;
+  z-index: 10;
+  transition: all .2s;
+  outline-offset: 2rem;
+}
+.composition__photo:hover {
+  outline: 1.5rem solid var(--light) ;
+  transform: scale(1.05) translateY(-.5rem);
+  box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, .5px);
+  z-index: 20;
+}
+.composition__photo--p1 {
+  left: 0;
+  top: -2rem;
+}
+.composition__photo--p2 {
+  right: 0;
+  top: 2rem;
+}
+.composition__photo--p3 {
+  left: 20%;
+  top: 10rem;
+}
+.composition:hover .composition__photo:not(:hover) {
+  transform: scale(.95);
+}
+
+/***** Section Features *****/
+.section-features {
+  padding: 20rem 0 50rem;
+  background-image: linear-gradient(
+    to right bottom,
+    var(--light-rgba),
+    var(--dark-rgba)),
+  url(../img/nat-4.jpg);
+  background-size: cover;
+  transform: skewY(-7deg);
+  margin-top: -9rem;
+}
+.section-features > * {
+  transform: skewY(7deg);
+}
+.features-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+  transition: transform .3s;
+
+}
+.features-box:hover {
+  transform: translateY(-1.5rem) scale(1.03);
+}
+.features-box>a{
+  text-decoration: none;
+  color: var(--light);
+}
+.features-box__icon {
+  font-size: 6rem;
+  margin-bottom: .5rem;
 }
