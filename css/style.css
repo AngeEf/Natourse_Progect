@@ -93,8 +93,6 @@ body {
   margin-right: var(--gutter-horizontel);
 }
 /***** Navigation *****/
-.nav {
-}
 .nav__checkbox {
   display: none;
 }
@@ -181,9 +179,6 @@ body {
   opacity: 1;
   width: 100%;
 }
-.nav__btn {
-}
-
 /* Navigation Icon*/
 
 .nav__icon {
